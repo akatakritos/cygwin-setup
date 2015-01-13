@@ -5,12 +5,13 @@
 set -e             #exit on error
 set -x             #print all commands
 
-function prereq() {
+function go-to-setup() {
   mkdir -p $HOME/setup
   cd $HOME/setup
 }
 
 function install-apt-cyg {
+  go-to-setup
   wget "http://rawgit.com/transcode-open/apt-cyg/master/apt-cyg"
   install apt-cyg /bin
 }
@@ -29,22 +30,28 @@ function install-packages {
     diffutils
     gcc-core
     gcc-g++
+    gettext-devel
     git
     git-completion
     grep
     libcrypt-devel
     libffi-devel
     libiconv-devel
+    liblzma-devel
     libncurses-devel
+    libpcre-devel
     libtool
     libyaml-devel
     make
+    mingw-gcc-g++
+    mingw-zlib-devel
     openssh
     openssl
     openssl-devel
     patch
     patchutils
     perl
+    pkg-config
     pv
     python
     rsync
@@ -62,8 +69,15 @@ function install-chere {
   chere -i -c -t mintty
 }
 
+function install-ag {
+  go-to-setup
+  git clone https://github.com/ggreer/the_silver_searcher.git
+  cd the_silver_searcher && ./build.sh && make install
+
+}
+
 # Begin Setup
-prereq
 install-apt-cyg
 install-packages
 install-chere
+install-ag
