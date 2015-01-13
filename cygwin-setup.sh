@@ -19,6 +19,7 @@ function install-packages {
   packages=(
     colorgcc
     curl
+    chere
     cygwin32-libffi
     gcc-core
     gcc-g++
@@ -42,8 +43,13 @@ function install-packages {
   apt-cyg install ${packages[@]}
 }
 
+function install-chere {
+  # requires admin
+  chere -i -c -t mintty
+}
+
 # Begin Setup
 #prereq
 #install-apt-cyg
 #install-packages
-
+#install-chere
