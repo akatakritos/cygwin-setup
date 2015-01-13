@@ -5,6 +5,9 @@
 set -e             #exit on error
 set -x             #print all commands
 
+CHRUBY_VERSION="0.3.9"
+RUBYINSTALL_VERSION="0.5.0"
+
 function go-to-setup() {
   mkdir -p $HOME/setup
   cd $HOME/setup
@@ -76,8 +79,26 @@ function install-ag {
 
 }
 
+function install-chruby {
+  go-to-setup
+  wget -O chruby-$CHRUBY_VERSION.tar.gz "https://github.com/postmodern/chruby/archive/v$CHRUBY_VERSION.tar.gz"
+  tar -xzvf chruby-$CHRUBY_VERSION.tar.gz
+  cd chruby-$CHRUBY_VERSION/
+  make install
+}
+
+function install-ruby-install {
+  go-to-setup
+  wget -O ruby-install-$RUBYINSTALL_VERSION.tar.gz https://github.com/postmodern/ruby-install/archive/v$RUBYINSTALL_VERSION.tar.gz
+  tar -xzvf ruby-install-$RUBYINSTALL_VERSION.tar.gz
+  cd ruby-install-$RUBYINSTALL_VERSION/
+  make install
+}
+
 # Begin Setup
 install-apt-cyg
 install-packages
 install-chere
 install-ag
+install-chruby
+install-ruby-install
