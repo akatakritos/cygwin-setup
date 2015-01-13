@@ -17,13 +17,21 @@ function install-apt-cyg {
 
 function install-packages {
   packages=(
-    colorgcc
-    curl
+    autoconf
+    automake
+    bzip2
     chere
+    clang
+    colorgcc
+    ctags
+    curl
     cygwin32-libffi
+    diffutils
     gcc-core
     gcc-g++
     git
+    git-completion
+    grep
     libcrypt-devel
     libffi-devel
     libiconv-devel
@@ -36,6 +44,12 @@ function install-packages {
     openssl-devel
     patch
     patchutils
+    perl
+    pv
+    python
+    rsync
+    tree
+    unzip
     zlib
     zlib-devel
   )
@@ -49,7 +63,7 @@ function install-chere {
 }
 
 # Begin Setup
-#prereq
-#install-apt-cyg
-#install-packages
-#install-chere
+prereq
+install-apt-cyg
+install-packages
+install-chere
